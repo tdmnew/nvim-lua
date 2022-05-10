@@ -10,7 +10,9 @@ local set_keymap = vim.api.nvim_set_keymap
 -------------------- Options -----------------------
 ----------------------------------------------------
 
-vim.cmd('colorscheme molokai')
+vim.o.guifont = "Consolas NF"
+
+vim.cmd('colorscheme nightfox')
 vim.cmd('set noshowmode')
 vim.cmd('set nocompatible')
 vim.cmd('syntax on')

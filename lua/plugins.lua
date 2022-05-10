@@ -10,6 +10,12 @@ return require('packer').startup(function()
 	use 'preservim/nerdcommenter'
 	use 'pangloss/vim-javascript'
 
+	-- Tabline --
+	use {
+		'romgrk/barbar.nvim',
+		requires = {'kyazdani42/nvim-web-devicons'}
+	}
+
 	-- Start Up --
 	use 'mhinz/vim-startify'
 
@@ -19,12 +25,15 @@ return require('packer').startup(function()
 	use 'danilo-augusto/vim-afterglow'
 	use 'tomasr/molokai'
 	use 'nanotech/jellybeans.vim'
+  use 'lifepillar/vim-solarized8'
+	use "EdenEast/nightfox.nvim"
 
   -- Telescope --
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
+	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
 	-- NERDTree --
 	use 'scrooloose/nerdtree'
@@ -38,6 +47,7 @@ return require('packer').startup(function()
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/nvim-cmp'
+	use 'antonk52/cssmodules-language-server'
 
 	-- Prettier, TS etc. --
 	use 'maxmellon/vim-jsx-pretty'
@@ -52,7 +62,7 @@ return require('packer').startup(function()
 	-- Snippets --
 	use 'SirVer/ultisnips'
   use 'quangnguyen30192/cmp-nvim-ultisnips'
-	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use 'honza/vim-snippets'
 
 	-- Git --
 	use 'tpope/vim-fugitive'

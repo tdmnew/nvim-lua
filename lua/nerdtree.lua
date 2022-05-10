@@ -7,7 +7,7 @@ vim.cmd('let NERDTreeChDirMode = 2')
 -- Show hidden files --
 vim.cmd('let NERDTreeShowHidden = 1')
 
-set_keymap('n', '<C-o>', [[:NERDTreeToggle<CR>]], { noremap = false })
+set_keymap('n', '<C-Space>', [[:NERDTreeToggle<CR>]], { noremap = false })
 set_keymap('n', '<C-J>', [[<C-W><C-J>]], opts_noremap)
 set_keymap('n', '<C-K>', [[<C-W><C-K>]], opts_noremap)
 set_keymap('n', '<C-L>', [[<C-W><C-L>]], opts_noremap)

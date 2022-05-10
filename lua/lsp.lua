@@ -18,11 +18,11 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-space>'] = cmp.mapping.complete(),
+    ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
-    ["<s-tab>"] = cmp.mapping.select_prev_item(),
-    ["<tab>"] = cmp.mapping.select_next_item(),
+    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+    ["<Tab>"] = cmp.mapping.select_next_item(),
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -74,3 +74,6 @@ lsp.tsserver.setup {
 lsp.csharp_ls.setup {
   capabilities = cmp_lsp.update_capabilities(make_client)
 }
+
+local opts = { noremap=true, silent=true }
+vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)

@@ -3,6 +3,15 @@ local set_keymap = vim.api.nvim_set_keymap
 
 require('telescope').setup{
   defaults = {
+    mappings = {
+      n = {
+    	  ['<C-d>'] = require('telescope.actions').delete_buffer
+      },
+      i = {
+        ["<C-h>"] = "which_key",
+        ['<C-d>'] = require('telescope.actions').delete_buffer
+      },
+    },
     file_ignore_patterns = {
       "dist/.*",
       "%.git/.*",
