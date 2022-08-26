@@ -40,6 +40,7 @@ opt.splitright = true
 
 -- Show relative line numbers --
 opt.relativenumber = true
+opt.nu = true
 
 ----------------------------------------------------
 ---------------------- Keys ------------------------
