@@ -26,7 +26,8 @@ cmp.setup({
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'ultisnips' }, 
+    { name = 'ultisnips' },
+    { name = 'orgmode' },
   }, {
     { name = 'buffer' },
   })

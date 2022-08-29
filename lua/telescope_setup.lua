@@ -20,14 +20,13 @@ require('telescope').setup{
       "%.idea/.*",
       "%.vscode/.*",
       "%.history/.*",
-      "~/.config/nvim/pack/.*"
+      "~/.config/nvim/pack/.*",
+      "ctags/"
     },
   },
 }
 
--- Find references to what is under the cursor --
-set_keymap('n', '<leader>ff', [[<Cmd>lua require'telescope.builtin'.lsp_references{}<CR>]], opts)
-
+set_keymap('n', '<leader>fr', [[<Cmd>lua require'telescope.builtin'.lsp_references{}<CR>]], opts)
 set_keymap('n', '<leader>ff', [[<Cmd>lua require'telescope.builtin'.find_files{}<CR>]], opts)
 set_keymap('n', '<leader>fg', [[<Cmd>lua require'telescope.builtin'.live_grep{}<CR>]], opts)
 set_keymap('n', '<leader>fb', [[<Cmd>lua require'telescope.builtin'.buffers{}<CR>]], opts)

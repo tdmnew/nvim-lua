@@ -45,14 +45,8 @@ opt.nu = true
 ----------------------------------------------------
 ---------------------- Keys ------------------------
 ----------------------------------------------------
-
 -- Exit terminal with escape --
 set_keymap('t', '<ESC>', [[<C-\><C-n>]], { noremap = true })
-
--- Remap Copy to Clipboard --
-set_keymap('v', '<leader>x', [["+x]], { noremap = true })
-set_keymap('v', '<leader>c', [["+y]], { noremap = true })
-set_keymap('v', '<leader>q', [["+P]], { noremap = true })
 
 -- Ctrl-B to Previous File in Buffer --
 set_keymap('n', '<C-B>', [[:e#<CR>]], { noremap = true })

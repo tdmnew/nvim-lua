@@ -53,8 +53,7 @@ vim.g.bufferline = {
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
--- Move to previous/next
-map('n', '<Leader>,', ':BufferPrevious<CR>', opts)
-map('n', '<Leader>.', ':BufferNext<CR>', opts)
--- Close buffer
-map('n', '<Leader>c', ':BufferDelete!<CR>', opts)
+-- Buffer Mappings
+map('n', '<Leader>qd', ':BufferDelete<CR>', opts)
+map('n', '<Leader>q,', ':BufferPrevious<CR>', opts)
+map('n', '<Leader>q.', ':BufferNext<CR>', opts)

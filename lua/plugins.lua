@@ -7,8 +7,13 @@ return require('packer').startup(function()
 		'nvim-lualine/lualine.nvim',
 		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
 	}
-	use 'preservim/nerdcommenter'
 	use 'pangloss/vim-javascript'
+
+	-- Which Key --
+	use {
+			'AckslD/nvim-whichkey-setup.lua',
+			requires = {'liuchengxu/vim-which-key'},
+	}
 
 	-- Tabline --
 	use {
@@ -35,9 +40,13 @@ return require('packer').startup(function()
 	}
 	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
-	-- NERDTree --
-	use 'scrooloose/nerdtree'
-	use 'tiagofumo/vim-nerdtree-syntax-highlight'
+	-- org mode --
+	use {'nvim-orgmode/orgmode', config = function()
+					require('orgmode').setup{}
+	end
+	}
+
+	-- Icons --
 	use 'ryanoasis/vim-devicons'
 
 	-- LSP, Autocompletion --
