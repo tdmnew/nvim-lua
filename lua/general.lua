@@ -18,7 +18,6 @@ vim.cmd('set nocompatible')
 vim.cmd('syntax on')
 
 -- Set space as leader key --
-vim.cmd([[ nnoremap <SPACE> <Nop> ]])
 g.mapleader = " "
 
 -- Auto-Reload File Changes --

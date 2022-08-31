@@ -10,10 +10,7 @@ return require('packer').startup(function()
 	use 'pangloss/vim-javascript'
 
 	-- Which Key --
-	use {
-			'AckslD/nvim-whichkey-setup.lua',
-			requires = {'liuchengxu/vim-which-key'},
-	}
+	use 'folke/which-key.nvim'
 
 	-- Tabline --
 	use {
