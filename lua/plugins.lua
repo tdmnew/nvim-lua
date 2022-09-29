@@ -18,6 +18,9 @@ return require('packer').startup(function()
 		requires = {'kyazdani42/nvim-web-devicons'}
 	}
 
+	-- File Explorer --
+  use 'mcchrish/nnn.vim'	
+	
 	-- Start Up --
 	use 'mhinz/vim-startify'
 
