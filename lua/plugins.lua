@@ -19,7 +19,14 @@ return require('packer').startup(function()
 	}
 
 	-- File Explorer --
-  use 'mcchrish/nnn.vim'	
+  use { 
+		'nvim-neo-tree/neo-tree.nvim',
+		requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+		}
+	}
 	
 	-- Start Up --
 	use 'mhinz/vim-startify'
@@ -38,7 +45,12 @@ return require('packer').startup(function()
 		'nvim-telescope/telescope.nvim',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
-	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+
+	-- Treesitter --
+	use {
+			'nvim-treesitter/nvim-treesitter',
+			run = ':TSUpdate'
+	}
 
 	-- org mode --
 	use {'nvim-orgmode/orgmode', config = function()

@@ -65,15 +65,15 @@ local cmp_lsp = require 'cmp_nvim_lsp'
 local make_client = vim.lsp.protocol.make_client_capabilities()
 
 lsp.vimls.setup {
-  capabilities = cmp_lsp.update_capabilities(make_client)
+  capabilities = cmp_lsp.default_capabilities(make_client)
 }
 
 lsp.tsserver.setup {
-  capabilities = cmp_lsp.update_capabilities(make_client)
+  capabilities = cmp_lsp.default_capabilities(make_client)
 }
 
 lsp.csharp_ls.setup {
-  capabilities = cmp_lsp.update_capabilities(make_client)
+  capabilities = cmp_lsp.default_capabilities(make_client)
 }
 
 local opts = { noremap=true, silent=true }
