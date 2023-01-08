@@ -70,7 +70,7 @@ set_keymap('n', '<Leader>\\l', [[<Plug>VimspectorStepInto]], { noremap = false }
 set_keymap('n', '<Leader>\\j', [[<Plug>VimspectorStepOver]], { noremap = false })
 
 -- File Explorer --
-set_keymap('n', '<Leader>n', [[:NeoTreeShowToggle<CR>]], { noremap = false })
+set_keymap('n', '<Leader>n', [[:NeoTreeRevealToggle<CR>]], { noremap = false })
 ----------------------------------------------------
 ---------------------- Misc ------------------------
 ----------------------------------------------------
