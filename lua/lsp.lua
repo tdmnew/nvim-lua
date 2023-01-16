@@ -60,21 +60,19 @@ cmp.setup.cmdline(':', {
   })
 })
 
+
+-- LSP
+
+require("mason").setup()
+require("mason-lspconfig").setup {}
+
 local lsp = require 'lspconfig'
-local cmp_lsp = require 'cmp_nvim_lsp'
-local make_client = vim.lsp.protocol.make_client_capabilities()
 
-lsp.vimls.setup {
-  capabilities = cmp_lsp.default_capabilities(make_client)
-}
-
-lsp.tsserver.setup {
-  capabilities = cmp_lsp.default_capabilities(make_client)
-}
-
-lsp.csharp_ls.setup {
-  capabilities = cmp_lsp.default_capabilities(make_client)
-}
+lsp.vimls.setup {}
+lsp.tsserver.setup {}
+lsp.csharp_ls.setup {}
+lsp.nimls.setup {}
+lsp.sumneko_lua.setup {}
 
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
