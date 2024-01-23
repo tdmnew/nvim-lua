@@ -1,33 +1,20 @@
 return require('packer').startup(function()
   -- Packer can manage itself --
   use 'wbthomason/packer.nvim'
+	use 'nvim-tree/nvim-web-devicons'
+	use 'github/copilot.vim'
 
 	-- Status Bar --
 	use {
 		'nvim-lualine/lualine.nvim',
 		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
 	}
+
 	use 'pangloss/vim-javascript'
 
 	-- Which Key --
 	use 'folke/which-key.nvim'
 
-	-- Tabline --
-	use {
-		'romgrk/barbar.nvim',
-		requires = {'kyazdani42/nvim-web-devicons'}
-	}
-
-	-- File Explorer --
-  use { 
-		'nvim-neo-tree/neo-tree.nvim',
-		requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-		}
-	}
-	
 	-- Start Up --
 	use 'mhinz/vim-startify'
 
@@ -46,16 +33,15 @@ return require('packer').startup(function()
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 
+	use {
+		"nvim-telescope/telescope-file-browser.nvim",
+		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+	}
+
 	-- Treesitter --
 	use {
 			'nvim-treesitter/nvim-treesitter',
 			run = ':TSUpdate'
-	}
-
-	-- org mode --
-	use {'nvim-orgmode/orgmode', config = function()
-					require('orgmode').setup{}
-	end
 	}
 
 	-- Icons --
@@ -67,18 +53,21 @@ return require('packer').startup(function()
 			"williamboman/mason-lspconfig.nvim",
 			"neovim/nvim-lspconfig",
 	}
+
+	use 'dmmulroy/tsc.nvim';
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/nvim-cmp'
 	use 'antonk52/cssmodules-language-server'
+	use 'simrat39/rust-tools.nvim'
 
-	-- Prettier, TS etc. --
+	-- TS etc. --
 	use 'maxmellon/vim-jsx-pretty'
 	use 'leafgarland/typescript-vim'
 	use 'peitalin/vim-jsx-typescript'
-	use { 'prettier/vim-prettier', run = 'yarn install' }
+  use('jose-elias-alvarez/null-ls.nvim')
 
 	-- VimWiki --
 	use 'vimwiki/vimwiki'

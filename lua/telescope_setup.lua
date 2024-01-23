@@ -29,5 +29,10 @@ require('telescope').setup{
 set_keymap('n', '<leader>fr', [[<Cmd>lua require'telescope.builtin'.lsp_references{}<CR>]], opts)
 set_keymap('n', '<leader>ff', [[<Cmd>lua require'telescope.builtin'.find_files{}<CR>]], opts)
 set_keymap('n', '<leader>fg', [[<Cmd>lua require'telescope.builtin'.live_grep{}<CR>]], opts)
+set_keymap('n', '<leader>fG', [[<Cmd>lua require'telescope.builtin'.git_status{}<CR>]], opts)
 set_keymap('n', '<leader>fb', [[<Cmd>lua require'telescope.builtin'.buffers{}<CR>]], opts)
 set_keymap('n', '<leader>fh', [[<Cmd>lua require'telescope.builtin'.help_tags{}<CR>]], opts)
+set_keymap('n', '<leader>fl', [[<Cmd>lua require'telescope.builtin'.resume{}<CR>]], opts)
+
+set_keymap("n", "<leader>fn", ":Telescope file_browser<CR>", { noremap = true })
+set_keymap("n", "<leader>fn", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", { noremap = true })

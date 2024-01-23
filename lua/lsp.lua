@@ -21,8 +21,8 @@ cmp.setup({
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
-    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-    ["<Tab>"] = cmp.mapping.select_next_item(),
+--    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+--    ["<Tab>"] = cmp.mapping.select_next_item(),
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -72,8 +72,32 @@ lsp.vimls.setup {}
 lsp.tsserver.setup {}
 lsp.csharp_ls.setup {}
 lsp.nimls.setup {}
-lsp.sumneko_lua.setup {}
+lsp.svelte.setup {}
+lsp.rust_analyzer.setup {
+  settings = {
+    ['rust-analyzer'] = {
+      assist = {
+        importEnforceGranularity = true,
+        importPrefix = "crate"
+      },
+      cargo = {
+          allFeatures = true
+      },
+      checkOnSave = {
+          -- default: `cargo check`
+          command = "clippy"
+      },
+      inlayHints = {
+        lifetimeElisionHints = {
+          enable = true,
+          useParameterNames = true
+        }
+      }
+    }
+  }
+}
 
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)

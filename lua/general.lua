@@ -50,12 +50,8 @@ set_keymap('t', '<ESC>', [[<C-\><C-n>]], { noremap = true })
 -- Ctrl-B to Previous File in Buffer --
 set_keymap('n', '<C-B>', [[:e#<CR>]], { noremap = true })
 
--- Bind Ctrl-T to new tab --
-set_keymap('n', '<C-t>', [[:tabnew<Space><CR>]], { noremap = true })
-set_keymap('n', '<C-t>', [[<Esc>:tabnew<Space><CR>]], { noremap = true })
-
 -- Prettier --
-set_keymap('n', '<leader>pr', [[<Plug>(Prettier)]], { noremap = false })
+set_keymap('n', '<leader>pr', [[:%!prettierd %<cr>]], { noremap = false })
 
 -- Vimspector --
 set_keymap('n', '<Leader>\\d', [[:call vimspector#Launch()<CR>]], { noremap = true })
@@ -69,8 +65,37 @@ set_keymap('n', '<Leader>\\h', [[<Plug>VimspectorStepOut]], { noremap = false })
 set_keymap('n', '<Leader>\\l', [[<Plug>VimspectorStepInto]], { noremap = false })
 set_keymap('n', '<Leader>\\j', [[<Plug>VimspectorStepOver]], { noremap = false })
 
--- File Explorer --
-set_keymap('n', '<Leader>n', [[:NeoTreeRevealToggle<CR>]], { noremap = false })
+-- Buffers --
+set_keymap('n', '<Leader>bd', [[:bp|bd #<CR>]], { noremap = false }) -- Delete buffer
+
+-- Tabs --
+set_keymap('n', '<Leader>tt', [[:tabnew<CR>]], { noremap = false }) -- New tab
+set_keymap('n', '<Leader>td', [[:tabclose<CR>]], { noremap = false }) -- Close tab
+set_keymap('n', '<Leader>ts', [[:tabs<CR>]], { noremap = false }) -- Show tabs
+set_keymap('n', '<Leader>th', [[:tabmove -1<CR>]], { noremap = false }) -- Move tab left
+set_keymap('n', '<Leader>tl', [[:tabmove +1<CR>]], { noremap = false }) -- Move tab right
+set_keymap('n', '<Leader>tn', [[:tabnext<CR>]], { noremap = false }) -- Next tab
+set_keymap('n', '<Leader>tp', [[:tabprevious<CR>]], { noremap = false }) -- Previous tab
+
+----------------------------------------------------
+--------------------- VimWiki ----------------------
+----------------------------------------------------
+
+--- Extensions ---
+vim.cmd([[
+  let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+]])
+
+--- Langs ---
+vim.cmd([[
+  let g:vim_markdown_fenced_languages = ['bash=sh', 'javascript', 'js=javascript', 'json=javascript', 'typescript', 'ts=typescript', 'php', 'html', 'css', 'rust', 'python']
+]])
+
+-- Unmap Tab --
+vim.cmd([[
+  au filetype vimwiki silent! iunmap <buffer> <Tab>
+]])
+
 ----------------------------------------------------
 ---------------------- Misc ------------------------
 ----------------------------------------------------
@@ -78,14 +103,6 @@ set_keymap('n', '<Leader>n', [[:NeoTreeRevealToggle<CR>]], { noremap = false })
 -- Turn on OmniFunc/Autocomplete --
 vim.cmd('filetype plugin on')
 opt.omnifunc = 'syntaxcomplete#Complete'
-
--- VimWiki & Markdown ---
-vim.cmd([[
-  let g:vimwiki_list = [{'path': '~/vimwiki/',
-                        \ 'syntax': 'markdown', 'ext': '.md'}]
-
-  let g:vim_markdown_fenced_languages = ['bash=sh', 'javascript', 'js=javascript', 'json=javascript', 'typescript', 'ts=typescript', 'php', 'html', 'css', 'rust', 'python']
-]])
 
 -- Vim-Snippets --
 vim.cmd([[
@@ -95,3 +112,4 @@ vim.cmd([[
   let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 ]])
 
+require('tsc').setup()
