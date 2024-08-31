@@ -30,7 +30,8 @@ local leader_keymap = {
     },
     ["<leader>p"] = {
         name = "Prettier",
-        r = "Run Prettier on current window"
+        r = "Run Prettier on current window",
+        t = "Run Rustfmt on current directory"
     },
     ["<leader>t"] = {
         name = "Tabs",

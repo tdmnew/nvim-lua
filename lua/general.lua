@@ -53,6 +53,9 @@ set_keymap('n', '<C-B>', [[:e#<CR>]], { noremap = true })
 -- Prettier --
 set_keymap('n', '<leader>pr', [[:%!prettierd %<cr>]], { noremap = false })
 
+-- Rustfmt --
+set_keymap('n', '<leader>pt', [[:%!rustfmt<cr>]], { noremap = false })
+
 -- Vimspector --
 set_keymap('n', '<Leader>\\d', [[:call vimspector#Launch()<CR>]], { noremap = true })
 set_keymap('n', '<Leader>\\e', [[:call vimspector#Reset()<CR>]], { noremap = true })
@@ -76,7 +79,6 @@ set_keymap('n', '<Leader>th', [[:tabmove -1<CR>]], { noremap = false }) -- Move 
 set_keymap('n', '<Leader>tl', [[:tabmove +1<CR>]], { noremap = false }) -- Move tab right
 set_keymap('n', '<Leader>tn', [[:tabnext<CR>]], { noremap = false }) -- Next tab
 set_keymap('n', '<Leader>tp', [[:tabprevious<CR>]], { noremap = false }) -- Previous tab
-
 ----------------------------------------------------
 --------------------- VimWiki ----------------------
 ----------------------------------------------------

@@ -60,44 +60,98 @@ cmp.setup.cmdline(':', {
   })
 })
 
-
--- LSP
-
-require("mason").setup()
-require("mason-lspconfig").setup {}
-
-local lsp = require 'lspconfig'
-
-lsp.vimls.setup {}
-lsp.tsserver.setup {}
-lsp.csharp_ls.setup {}
-lsp.nimls.setup {}
-lsp.svelte.setup {}
-lsp.rust_analyzer.setup {
-  settings = {
-    ['rust-analyzer'] = {
-      assist = {
-        importEnforceGranularity = true,
-        importPrefix = "crate"
-      },
-      cargo = {
-          allFeatures = true
-      },
-      checkOnSave = {
-          -- default: `cargo check`
-          command = "clippy"
-      },
-      inlayHints = {
-        lifetimeElisionHints = {
-          enable = true,
-          useParameterNames = true
-        }
-      }
-    }
-  }
-}
-
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 vim.api.nvim_set_keymap('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+
+-- LSP
+
+require("mason").setup()
+require("mason-lspconfig").setup({
+ ensure_installed = {
+  "astro",
+  "tsserver",
+  "html",
+  "cssls",
+  "tailwindcss",
+  "lua_ls",
+ },
+ automatic_installation = true,
+})
+require('mason-lspconfig').setup_handlers {
+  function(server_name)
+    require('lspconfig')[server_name].setup {
+      on_attach = on_attach,
+    }
+  end,
+  ['astro'] = function()
+    require('lspconfig').astro.setup {
+      on_attach = on_attach,
+      filetypes = { "astro" },
+    }
+  end,
+  ['lua_ls'] = function()
+    require('lspconfig').lua_ls.setup {
+      on_attach = on_attach,
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim", "on_attach", }
+          }
+        }
+      }
+    }
+  end,
+  ['rust_analyzer'] = function()
+    require('lspconfig').rust_analyzer.setup {
+      settings = {
+        ['rust_analyzer'] = {
+          imports = {
+            granularity = {
+              group = "module",
+            },
+            prefix = "self",
+          },
+          assist = {
+            importEnforceGranularity = true,
+            importPrefix = "crate"
+          },
+          cargo = {
+              allFeatures = true
+          },
+          checkOnSave = {
+              -- default: `cargo check`
+              command = "clippy"
+          },
+          inlayHints = {
+            lifetimeElisionHints = {
+              enable = true,
+              useParameterNames = true
+            }
+          }
+        }
+      }
+    }
+  end,
+}
+------------------------------------------------------------
+----- When the filetype isn't recognized automatically -----
+------------------------------------------------------------
+
+vim.cmd [[
+  autocmd BufRead,BufNewFile *.astro set filetype=astro
+]]
+
+-- Treesitter
+
+local treesitter = require'nvim-treesitter.configs'
+
+treesitter.setup {
+  auto_install = true,
+  ensure_installed = { "astro" }, -- Install the Astro parser
+  highlight = {
+    enable = true,              -- Enable syntax highlighting
+    additional_vim_regex_highlighting = false,
+  },
+}
