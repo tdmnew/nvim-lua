@@ -51,10 +51,10 @@ set_keymap('t', '<ESC>', [[<C-\><C-n>]], { noremap = true })
 set_keymap('n', '<C-B>', [[:e#<CR>]], { noremap = true })
 
 -- Prettier --
-set_keymap('n', '<leader>pr', [[:%!prettierd %<cr>]], { noremap = false })
+-- set_keymap('n', '<leader>pr', [[:%!prettierd %<cr>]], { noremap = false })
 
 -- Rustfmt --
-set_keymap('n', '<leader>pt', [[:%!rustfmt<cr>]], { noremap = false })
+-- set_keymap('n', '<leader>pt', [[:%!rustfmt<cr>]], { noremap = false })
 
 -- Vimspector --
 set_keymap('n', '<Leader>\\d', [[:call vimspector#Launch()<CR>]], { noremap = true })

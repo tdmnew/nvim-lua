@@ -3,7 +3,7 @@
 -----------------------------------------------------------
 
 vim.cmd('set completeopt=menu,menuone,noselect')
-local cmp = require'cmp'
+local cmp = require 'cmp'
 
 cmp.setup({
   snippet = {
@@ -21,8 +21,8 @@ cmp.setup({
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
---    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
---    ["<Tab>"] = cmp.mapping.select_next_item(),
+    --    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+    --    ["<Tab>"] = cmp.mapping.select_next_item(),
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -60,26 +60,41 @@ cmp.setup.cmdline(':', {
   })
 })
 
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 vim.api.nvim_set_keymap('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+
+-- Formatters/Prettier etc.
+require("conform").setup({
+  format_on_save = {
+    timeout_ms = 1000,
+    lsp_format = "fallback",
+  },
+  formatters_by_ft = {
+    lua = { "stylua" },
+    python = { "isort", "black" },
+    rust = { "rustfmt", lsp_format = "fallback" },
+    javascript = { "prettierd", "prettier", stop_after_first = true },
+    dart = { "dart_format", async = true }
+  },
+})
 
 -- LSP
 
 require("mason").setup()
 require("mason-lspconfig").setup({
- ensure_installed = {
-  "astro",
-  "tsserver",
-  "html",
-  "cssls",
-  "tailwindcss",
-  "lua_ls",
- },
- automatic_installation = true,
+  ensure_installed = {
+    "astro",
+    "tsserver",
+    "html",
+    "cssls",
+    "tailwindcss",
+    "lua_ls",
+  },
+  automatic_installation = true,
 })
-require('mason-lspconfig').setup_handlers {
+require('mason-lspconfig').setup {
   function(server_name)
     require('lspconfig')[server_name].setup {
       on_attach = on_attach,
@@ -118,11 +133,11 @@ require('mason-lspconfig').setup_handlers {
             importPrefix = "crate"
           },
           cargo = {
-              allFeatures = true
+            allFeatures = true
           },
           checkOnSave = {
-              -- default: `cargo check`
-              command = "clippy"
+            -- default: `cargo check`
+            command = "clippy"
           },
           inlayHints = {
             lifetimeElisionHints = {
@@ -145,13 +160,13 @@ vim.cmd [[
 
 -- Treesitter
 
-local treesitter = require'nvim-treesitter.configs'
+local treesitter = require 'nvim-treesitter.configs'
 
 treesitter.setup {
   auto_install = true,
   ensure_installed = { "astro" }, -- Install the Astro parser
   highlight = {
-    enable = true,              -- Enable syntax highlighting
+    enable = true,                -- Enable syntax highlighting
     additional_vim_regex_highlighting = false,
   },
 }

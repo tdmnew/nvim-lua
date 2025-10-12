@@ -20,7 +20,6 @@ require('telescope').setup{
       "%.idea/.*",
       "%.vscode/.*",
       "%.history/.*",
-      "~/.config/nvim/pack/.*",
       "ctags/"
     },
   },

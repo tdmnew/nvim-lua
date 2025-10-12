@@ -1,91 +1,95 @@
-return require('packer').startup(function()
-  -- Packer can manage itself --
-  use 'wbthomason/packer.nvim'
-	use 'nvim-tree/nvim-web-devicons'
-	use 'github/copilot.vim'
-
-	-- Status Bar --
-	use {
-		'nvim-lualine/lualine.nvim',
-		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-	}
-
-	use 'pangloss/vim-javascript'
+return {
+	'nvim-tree/nvim-web-devicons',
+	'nvim-lualine/lualine.nvim',
+	'pangloss/vim-javascript',
 
 	-- Which Key --
-	use 'folke/which-key.nvim'
+	'folke/which-key.nvim',
 
 	-- Start Up --
-	use 'mhinz/vim-startify'
+	'mhinz/vim-startify',
 
 	-- Colour Scheme --
-	use 'ap/vim-css-color'
-	use 'HerringtonDarkholme/yats.vim'
-	use 'danilo-augusto/vim-afterglow'
-	use 'tomasr/molokai'
-	use 'nanotech/jellybeans.vim'
-  use 'lifepillar/vim-solarized8'
-	use "EdenEast/nightfox.nvim"
+	'ap/vim-css-color',
+	'HerringtonDarkholme/yats.vim',
+	'danilo-augusto/vim-afterglow',
+	'tomasr/molokai',
+	'nanotech/jellybeans.vim',
+	'lifepillar/vim-solarized8',
+	'EdenEast/nightfox.nvim',
 
-  -- Telescope --
-	use {
+	-- Telescope --
+	{
 		'nvim-telescope/telescope.nvim',
-		requires = { {'nvim-lua/plenary.nvim'} }
-	}
+		dependencies = {'nvim-lua/plenary.nvim'}
+	},
 
-	use {
+	{
 		"nvim-telescope/telescope-file-browser.nvim",
-		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-	}
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+	},
 
 	-- Treesitter --
-	use {
-			'nvim-treesitter/nvim-treesitter',
-			run = ':TSUpdate'
-	}
+	{
+		"nvim-treesitter/nvim-treesitter",
+		branch = 'master',
+		lazy = false,
+		build = ":TSUpdate"
+	},
 
 	-- Icons --
-	use 'ryanoasis/vim-devicons'
+	'ryanoasis/vim-devicons',
 
 	-- LSP, Autocompletion --
-	use {
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
-			"neovim/nvim-lspconfig",
-	}
+	"williamboman/mason.nvim",
+	"williamboman/mason-lspconfig.nvim",
+	"neovim/nvim-lspconfig",
 
-	use 'dmmulroy/tsc.nvim';
-	use 'hrsh7th/cmp-nvim-lsp'
-	use 'hrsh7th/cmp-buffer'
-	use 'hrsh7th/cmp-path'
-	use 'hrsh7th/cmp-cmdline'
-	use 'hrsh7th/nvim-cmp'
-	use 'antonk52/cssmodules-language-server'
-	use 'simrat39/rust-tools.nvim'
+	'dmmulroy/tsc.nvim',
+	'hrsh7th/cmp-nvim-lsp',
+	'hrsh7th/cmp-buffer',
+	'hrsh7th/cmp-path',
+	'hrsh7th/cmp-cmdline',
+	'hrsh7th/nvim-cmp',
+	'antonk52/cssmodules-language-server',
+	'simrat39/rust-tools.nvim',
+
+	{
+		'stevearc/conform.nvim',
+		opts = {},
+	},
+
+	{
+		'nvim-flutter/flutter-tools.nvim',
+		lazy = false,
+		dependencies = {
+				'nvim-lua/plenary.nvim',
+				'stevearc/dressing.nvim',
+		},
+		config = true,
+	},
 
 	-- TS etc. --
-	use 'maxmellon/vim-jsx-pretty'
-	use 'leafgarland/typescript-vim'
-	use 'peitalin/vim-jsx-typescript'
-  use('jose-elias-alvarez/null-ls.nvim')
+	'maxmellon/vim-jsx-pretty',
+	'leafgarland/typescript-vim',
+	'peitalin/vim-jsx-typescript',
+	'jose-elias-alvarez/null-ls.nvim',
 
 	-- VimWiki --
-	use 'vimwiki/vimwiki'
-	use 'plasticboy/vim-markdown'
+	'vimwiki/vimwiki',
+	'plasticboy/vim-markdown',
 
 	-- Snippets --
-	use 'SirVer/ultisnips'
-  use 'quangnguyen30192/cmp-nvim-ultisnips'
-  use 'honza/vim-snippets'
+	'honza/vim-snippets',
 
 	-- Git --
-	use 'tpope/vim-fugitive'
+	'tpope/vim-fugitive',
 
 	-- Debugger --
-	use 'puremourning/vimspector'
+	'puremourning/vimspector',
 
 	-- Dot Net --
-	use 'OmniSharp/omnisharp-vim'
-	use 'nickspoons/vim-sharpenup'
-	use 'sheerun/vim-polyglot'
-end)
+	'OmniSharp/omnisharp-vim',
+	'nickspoons/vim-sharpenup',
+	'sheerun/vim-polyglot',
+}
