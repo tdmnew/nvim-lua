@@ -21,8 +21,6 @@ cmp.setup({
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
-    --    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-    --    ["<Tab>"] = cmp.mapping.select_next_item(),
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -84,14 +82,6 @@ require("conform").setup({
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = {
-    "astro",
-    "tsserver",
-    "html",
-    "cssls",
-    "tailwindcss",
-    "lua_ls",
-  },
   automatic_installation = true,
 })
 require('mason-lspconfig').setup {

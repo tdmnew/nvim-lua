@@ -18,15 +18,36 @@ return {
 	'lifepillar/vim-solarized8',
 	'EdenEast/nightfox.nvim',
 
+	{
+		"obsidian-nvim/obsidian.nvim",
+		version = "*", -- use latest release, remove to use latest commit
+		---@module 'obsidian'
+		---@type obsidian.config
+		opts = {
+			legacy_commands = false, -- this will be removed in the next major release
+			workspaces = {
+				{
+					name = "wiki",
+					path = "~/wiki",
+				},
+			},
+		},
+	},
+
 	-- Telescope --
 	{
 		'nvim-telescope/telescope.nvim',
-		dependencies = {'nvim-lua/plenary.nvim'}
+		dependencies = { 'nvim-lua/plenary.nvim' },
 	},
 
 	{
-		"nvim-telescope/telescope-file-browser.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+		'stevearc/oil.nvim',
+		---@module 'oil'
+		---@type oil.SetupOpts
+		opts = {},
+		dependencies = { { "nvim-mini/mini.icons", opts = {} } },
+		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+		lazy = false,
 	},
 
 	-- Treesitter --
@@ -63,8 +84,8 @@ return {
 		'nvim-flutter/flutter-tools.nvim',
 		lazy = false,
 		dependencies = {
-				'nvim-lua/plenary.nvim',
-				'stevearc/dressing.nvim',
+			'nvim-lua/plenary.nvim',
+			'stevearc/dressing.nvim',
 		},
 		config = true,
 	},
@@ -75,21 +96,9 @@ return {
 	'peitalin/vim-jsx-typescript',
 	'jose-elias-alvarez/null-ls.nvim',
 
-	-- VimWiki --
-	'vimwiki/vimwiki',
-	'plasticboy/vim-markdown',
-
 	-- Snippets --
 	'honza/vim-snippets',
 
 	-- Git --
 	'tpope/vim-fugitive',
-
-	-- Debugger --
-	'puremourning/vimspector',
-
-	-- Dot Net --
-	'OmniSharp/omnisharp-vim',
-	'nickspoons/vim-sharpenup',
-	'sheerun/vim-polyglot',
 }

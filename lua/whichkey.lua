@@ -19,9 +19,6 @@ local leader_keymap = {
     ["g"] = {
         d = "Goto Definition",
     },
-    ["<leader>\\"] = {
-        name = "Vimspector",
-    },
     ["<leader>q"] = {
         name = "Buffers",
         [","] = "Previous Buffer",

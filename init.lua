@@ -1,12 +1,11 @@
-
---  $$\    $$\ $$\                     $$$$$$$\   $$$$$$\  
---  $$ |   $$ |\__|                    $$  __$$\ $$  __$$\ 
+--  $$\    $$\ $$\                     $$$$$$$\   $$$$$$\
+--  $$ |   $$ |\__|                    $$  __$$\ $$  __$$\
 --  $$ |   $$ |$$\ $$$$$$\$$$$\        $$ |  $$ |$$ /  \__|
---  \$$\  $$  |$$ |$$  _$$  _$$\       $$$$$$$  |$$ |      
---   \$$\$$  / $$ |$$ / $$ / $$ |      $$  __$$< $$ |      
---    \$$$  /  $$ |$$ | $$ | $$ |      $$ |  $$ |$$ |  $$\ 
+--  \$$\  $$  |$$ |$$  _$$  _$$\       $$$$$$$  |$$ |
+--   \$$\$$  / $$ |$$ / $$ / $$ |      $$  __$$< $$ |
+--    \$$$  /  $$ |$$ | $$ | $$ |      $$ |  $$ |$$ |  $$\
 --     \$  /   $$ |$$ | $$ | $$ |      $$ |  $$ |\$$$$$$  |
---      \_/    \__|\__| \__| \__|      \__|  \__| \______/ 
+--      \_/    \__|\__| \__| \__|      \__|  \__| \______/
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -16,7 +15,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -44,6 +43,7 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
+require('file-explorer')
 require('theme')
 require('general')
 require('start-screen')

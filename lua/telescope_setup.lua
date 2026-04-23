@@ -1,16 +1,21 @@
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 local set_keymap = vim.api.nvim_set_keymap
 
-require('telescope').setup{
+require('telescope').setup {
+  extensions = {
+    file_browser = {
+      hijack_netrw = true,
+      grouped = true,
+      async = false,
+    }
+  },
   defaults = {
     mappings = {
-      n = {
-    	  ['<C-d>'] = require('telescope.actions').delete_buffer
-      },
       i = {
         ["<C-h>"] = "which_key",
         ['<C-d>'] = require('telescope.actions').delete_buffer
       },
+
     },
     file_ignore_patterns = {
       "dist/.*",
@@ -32,6 +37,3 @@ set_keymap('n', '<leader>fG', [[<Cmd>lua require'telescope.builtin'.git_status{}
 set_keymap('n', '<leader>fb', [[<Cmd>lua require'telescope.builtin'.buffers{}<CR>]], opts)
 set_keymap('n', '<leader>fh', [[<Cmd>lua require'telescope.builtin'.help_tags{}<CR>]], opts)
 set_keymap('n', '<leader>fl', [[<Cmd>lua require'telescope.builtin'.resume{}<CR>]], opts)
-
-set_keymap("n", "<leader>fn", ":Telescope file_browser<CR>", { noremap = true })
-set_keymap("n", "<leader>fn", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", { noremap = true })
