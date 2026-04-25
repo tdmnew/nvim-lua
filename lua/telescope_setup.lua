@@ -1,6 +1,3 @@
-local opts = { noremap = true, silent = true }
-local set_keymap = vim.api.nvim_set_keymap
-
 require('telescope').setup {
   extensions = {
     file_browser = {
@@ -29,6 +26,9 @@ require('telescope').setup {
     },
   },
 }
+
+local opts = { noremap = true, silent = true }
+local set_keymap = vim.api.nvim_set_keymap
 
 set_keymap('n', '<leader>fr', [[<Cmd>lua require'telescope.builtin'.lsp_references{}<CR>]], opts)
 set_keymap('n', '<leader>ff', [[<Cmd>lua require'telescope.builtin'.find_files{}<CR>]], opts)

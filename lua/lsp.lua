@@ -1,69 +1,6 @@
------------------------------------------------------------
------------------ LSP and AutoCompletion ------------------
------------------------------------------------------------
-
-vim.cmd('set completeopt=menu,menuone,noselect')
-local cmp = require 'cmp'
-
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      vim.fn["UltiSnips#Anon"](args.body)
-    end,
-  },
-  window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
-  },
-  mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = false }),
-  }),
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'ultisnips' },
-    { name = 'orgmode' },
-  }, {
-    { name = 'buffer' },
-  })
-})
-
--- Set configuration for specific filetype.
-cmp.setup.filetype('gitcommit', {
-  sources = cmp.config.sources({
-    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-  }, {
-    { name = 'buffer' },
-  })
-})
-
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    { name = 'buffer' }
-  }
-})
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-    { name = 'cmdline' }
-  })
-})
-
-local opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-vim.api.nvim_set_keymap('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-
--- Formatters/Prettier etc.
+--------------------------------
+--- Formatters/Prettier etc. ---
+--------------------------------
 require("conform").setup({
   format_on_save = {
     timeout_ms = 1000,
@@ -78,7 +15,29 @@ require("conform").setup({
   },
 })
 
--- LSP
+--------------------------------
+------- Code Completion --------
+--------------------------------
+
+require("cmp").setup({
+  mapping = require("cmp").mapping.preset.insert({
+    ["<C-Space>"] = require("cmp").mapping.complete(),
+    ["<CR>"] = require("cmp").mapping.confirm({ select = true }),
+  }),
+  sources = {
+    { name = "nvim_lsp" },
+  },
+})
+
+--------------------------------
+------------ LSP ---------------
+--------------------------------
+vim.cmd('set completeopt=menu,menuone,noselect')
+
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 
 require("mason").setup()
 require("mason-lspconfig").setup({
@@ -88,12 +47,6 @@ require('mason-lspconfig').setup {
   function(server_name)
     require('lspconfig')[server_name].setup {
       on_attach = on_attach,
-    }
-  end,
-  ['astro'] = function()
-    require('lspconfig').astro.setup {
-      on_attach = on_attach,
-      filetypes = { "astro" },
     }
   end,
   ['lua_ls'] = function()
@@ -139,24 +92,4 @@ require('mason-lspconfig').setup {
       }
     }
   end,
-}
-------------------------------------------------------------
------ When the filetype isn't recognized automatically -----
-------------------------------------------------------------
-
-vim.cmd [[
-  autocmd BufRead,BufNewFile *.astro set filetype=astro
-]]
-
--- Treesitter
-
-local treesitter = require 'nvim-treesitter.configs'
-
-treesitter.setup {
-  auto_install = true,
-  ensure_installed = { "astro" }, -- Install the Astro parser
-  highlight = {
-    enable = true,                -- Enable syntax highlighting
-    additional_vim_regex_highlighting = false,
-  },
 }

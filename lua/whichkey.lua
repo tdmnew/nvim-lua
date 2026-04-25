@@ -1,45 +1,23 @@
-local wk = require('which-key')
-
-local leader_keymap = {
-    ["<leader>b"] = {
-        name = "Buffers",
-        d = "Delete Buffer",
-    },
-    ["<leader>f"] = {
-        name = "Telescope",
-        b = "Find Buffer",
-        f = "Find File",
-        g = "Grep",
-        G = "Git Status",
-        h = "Find Help",
-        l = "Resume last search",
-        r = "Find References",
-        n = "File Browser",
-    },
-    ["g"] = {
-        d = "Goto Definition",
-    },
-    ["<leader>q"] = {
-        name = "Buffers",
-        [","] = "Previous Buffer",
-        ["."] = "Next Buffer",
-        ["d"] = "Delete Buffer"
-    },
-    ["<leader>p"] = {
-        name = "Prettier",
-        r = "Run Prettier on current window",
-        t = "Run Rustfmt on current directory"
-    },
-    ["<leader>t"] = {
-        name = "Tabs",
-        t = "New Tab",
-        d = "Close Tab",
-        s = "Show Tabs",
-        h = "Move tab left",
-        l = "Move tab right",
-        n = "Next Tab",
-        p = "Previous Tab",
-    },
-}
-
-wk.register(leader_keymap)
+require('which-key').add({
+  -- Quick Commands --
+  { "<leader>d",  group = "Quick Commands" },
+  -- Telescope --
+  { "<leader>f",  group = "Telescope" },
+  { "<leader>fG", desc = "Git Status" },
+  { "<leader>fb", desc = "Find Buffer" },
+  { "<leader>ff", desc = "Find File" },
+  { "<leader>fg", desc = "Grep" },
+  { "<leader>fh", desc = "Find Help" },
+  { "<leader>fl", desc = "Resume last search" },
+  { "<leader>fn", desc = "File Browser" },
+  { "<leader>fr", desc = "Find References" },
+  -- Tabs --
+  { "<leader>t",  group = "Tabs" },
+  { "<leader>td", desc = "Close Tab" },
+  { "<leader>th", desc = "Move tab left" },
+  { "<leader>tl", desc = "Move tab right" },
+  { "<leader>tn", desc = "Next Tab" },
+  { "<leader>tp", desc = "Previous Tab" },
+  { "<leader>ts", desc = "Show Tabs" },
+  { "<leader>tt", desc = "New Tab" },
+})

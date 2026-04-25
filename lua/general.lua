@@ -47,12 +47,6 @@ opt.nu = true
 -- Exit terminal with escape --
 set_keymap('t', '<ESC>', [[<C-\><C-n>]], { noremap = true })
 
--- Ctrl-B to Previous File in Buffer --
-set_keymap('n', '<C-B>', [[:e#<CR>]], { noremap = true })
-
--- Buffers --
-set_keymap('n', '<Leader>bd', ':bp|bd #<CR>', { noremap = false }) -- Delete buffer
-
 -- Tabs --
 set_keymap('n', '<Leader>tt', ':tabnew<CR>', { noremap = false })      -- New Tab
 set_keymap('n', '<Leader>td', ':tabclose<CR>', { noremap = false })    -- Close tab
@@ -67,15 +61,31 @@ set_keymap('n', '<Leader>w', ':Obsidian<CR>', { noremap = false })              
 set_keymap('n', '<Leader>ww', ':Obsidian quick_switch<CR>', { noremap = false }) -- Quick Note
 
 ----------------------------------------------------
+------------------ Quick Commands ------------------
+----------------------------------------------------
+local dotnet_cmds = {
+  { name = ".NET Build & Run", cmd = "dotnet build && dotnet run" },
+  { name = "Edit Vim Files",   location = "~/.config/nvim/lua" }
+}
+
+vim.keymap.set("n", "<leader>d", function()
+  vim.ui.select(dotnet_cmds, {
+    prompt = "Select Command",
+    format_item = function(item)
+      return item.name
+    end,
+  }, function(choice)
+    if choice and choice.cmd then
+      vim.cmd("belowright 10split | terminal " .. choice.cmd)
+      vim.cmd("startinsert")
+    elseif choice and choice.location then
+      vim.cmd(":edit" .. choice.location)
+    end
+  end)
+end)
+
+----------------------------------------------------
 ---------------------- Misc ------------------------
 ----------------------------------------------------
-
--- Vim-Snippets --
-vim.cmd([[
-  filetype plugin indent on
-  let g:UltiSnipsExpandTrigger="<c-j>"
-  let g:UltiSnipsJumpForwardTrigger="<c-b>"
-  let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-]])
 
 require('tsc').setup()
