@@ -105,4 +105,7 @@ return {
 
   -- Git --
   'tpope/vim-fugitive',
+
+  -- Live code execution! --
+  { "michaelb/sniprun", build = "sh install.sh" }
 }
