@@ -1,5 +1,4 @@
 return {
-  -- 'make it like an IDE' shit --
   'nvim-tree/nvim-web-devicons',
   'nvim-lualine/lualine.nvim',
 
@@ -20,7 +19,7 @@ return {
 
   {
     "obsidian-nvim/obsidian.nvim",
-    version = "*", -- use latest release, remove to use latest commit
+    version = "*",
     ---@module 'obsidian'
     ---@type obsidian.config
     opts = {
@@ -36,21 +35,19 @@ return {
 
   {
     "romus204/tree-sitter-manager.nvim",
-    dependencies = {}, -- tree-sitter CLI must be installed system-wide
-    config = function()
-      require("tree-sitter-manager").setup({
-      })
-    end
+    dependencies = {},
   },
 
-  {
-    "seblyng/roslyn.nvim",
-    ---@module 'roslyn.config'
-    ---@type RoslynNvimConfig
-    opts = {
-      -- your configuration comes here; leave empty for default settings
-    },
-  },
+  ------- Use again when it works with blazor/cshtml --------
+  -- {
+  --   "seblyng/roslyn.nvim",
+  --   ---@module 'roslyn.config'
+  --   ---@type RoslynNvimConfig
+  --   -- commit = "74e6c6a1a8ee139a31c60170ff23d0a44e5f1157",
+  --   opts = {
+  --   },
+  --   lazy = false,
+  -- },
 
   -- Telescope --
   {
@@ -68,10 +65,14 @@ return {
   },
 
   -- LSP, Autocompletion --
-  "neovim/nvim-lspconfig",
-  "williamboman/mason.nvim",
-  "williamboman/mason-lspconfig.nvim",
-  'dmmulroy/tsc.nvim',
+  {
+    "mason-org/mason-lspconfig.nvim",
+    opts = {},
+    dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
+    },
+  },
 
   {
     'hrsh7th/nvim-cmp',
@@ -99,9 +100,10 @@ return {
   },
 
   -- TS etc. --
-  'maxmellon/vim-jsx-pretty',
   'leafgarland/typescript-vim',
   'peitalin/vim-jsx-typescript',
+  'dmmulroy/tsc.nvim',
+  'maxmellon/vim-jsx-pretty',
 
   -- Git --
   'tpope/vim-fugitive',
